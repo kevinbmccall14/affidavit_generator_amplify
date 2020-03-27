@@ -1,6 +1,8 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
+const BUCKET_NAME = 'backend-dev-uploadbucket-1iz1d3q6w956z';
+
 // uses XHR request to send file to presignedURL
 const uploadToS3 = (url, file) => {
   const xhr = new XMLHttpRequest();
@@ -26,7 +28,7 @@ const putToSignedURL = file =>
     {
       method: 'POST',
       body: JSON.stringify({
-        bucket: 'backend-dev-uploadbucket-1iz1d3q6w956z',
+        bucket: BUCKET_NAME,
         path: file.path,
         contentType: 'multipart/form-data',
       }),
@@ -37,10 +39,18 @@ const putToSignedURL = file =>
     .catch(err => console.log(err));
 
 // File upload component powered by https://www.dropzonejs.com/
-const Upload = () => (
+const Upload = ({ onUpload }) => (
   <Dropzone
     onDrop={acceptedFiles =>
-      Promise.all(acceptedFiles.map(file => putToSignedURL(file)))
+      Promise.all(
+        acceptedFiles.map(file =>
+          putToSignedURL(file).then(() =>
+            onUpload(
+              `https://${BUCKET_NAME}.s3.amazonaws.com/${file.name}`,
+            ),
+          ),
+        ),
+      )
     }
   >
     {({ getRootProps, getInputProps }) => (
