@@ -2,6 +2,17 @@ import React, { useReducer } from 'react';
 import './App.css';
 import Upload from './Upload';
 import PDFView from './PDFView';
+import CaseData from './CaseData';
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+import { withAuthenticator } from 'aws-amplify-react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+
+Amplify.configure(awsconfig);
 
 const START_CASE = 'START_CASE';
 
@@ -22,26 +33,32 @@ const reducer = (state, action) => {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <div className="App">
-      <nav className="App-nav"></nav>
-      {state.newCase ? (
-        <section className="App-split-view">
-          <PDFView url={state.newCase.fileUrl} />
-        </section>
-      ) : (
-        <Upload
-          onUpload={url => {
-            dispatch({
-              type: START_CASE,
-              case: {
-                fileUrl: url,
-              },
-            });
-          }}
-        />
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <nav className="App-nav"></nav>
+        <Switch>
+          <Route path="/new">
+            <Upload
+              onUpload={url => {
+                dispatch({
+                  type: START_CASE,
+                  case: {
+                    fileUrl: url,
+                  },
+                });
+              }}
+            />
+          </Route>
+          <Route path="/">
+            <section className="App-split-view">
+              <PDFView url={state.newCase.fileUrl} />
+              <CaseData />
+            </section>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+export default withAuthenticator(App, true);

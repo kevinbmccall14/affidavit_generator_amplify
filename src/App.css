@@ -23,12 +23,12 @@
   height: 50px;
 }
 
-.App-split-view {
-  display: flex;
-}
-
 .App-link {
   color: #61dafb;
+}
+
+.App-split-view {
+  display: flex;
 }
 
 @keyframes App-logo-spin {

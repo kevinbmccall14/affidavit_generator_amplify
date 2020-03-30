@@ -1,0 +1,38 @@
+type Case @model {
+  id: ID!
+  aaa: String
+  pages: [Page]
+}
+
+type Page {
+  lines: [Line]
+  tables: [Table]
+  fields: [Field]
+}
+
+type Line {
+  text: String
+  confidence: Float
+  words: [Word]
+}
+
+type Word {
+  text: String
+  confidence: Float
+}
+
+type Table {
+  cells: [Cell]
+}
+
+type Cell {
+  row: Int
+  column: Int
+  text: String
+  confidence: Float
+}
+
+type Field {
+  key: String
+  value: String
+}

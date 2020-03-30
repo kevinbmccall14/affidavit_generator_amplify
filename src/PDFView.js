@@ -4,13 +4,15 @@ import './PDFView.css';
 
 const PDFView = url => {
   return (
-    <PDFViewer
-      document={{
-        url,
-      }}
-      css="PDFView-container"
-      canvasCss="PDFView-canvas"
-    />
+    <section>
+      <PDFViewer
+        document={{
+          url,
+        }}
+        css="PDFView-container"
+        canvasCss="PDFView-canvas"
+      />
+    </section>
   );
 };
 

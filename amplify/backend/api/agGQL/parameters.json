@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "agGQL",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authagamplify0c96b27c",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
