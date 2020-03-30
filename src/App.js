@@ -2,7 +2,8 @@ import React, { useReducer } from 'react';
 import './App.css';
 import Upload from './Upload';
 import PDFView from './PDFView';
-import CaseData from './CaseData';
+import FileData from './files/FileData';
+import Explorer from './files/Explorer';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
@@ -51,8 +52,9 @@ function App() {
           </Route>
           <Route path="/">
             <section className="App-split-view">
-              <PDFView url={state.newCase.fileUrl} />
-              <CaseData />
+              {/* <PDFView url={state.newCase.fileUrl} />
+              <FileData /> */}
+              <Explorer />
             </section>
           </Route>
         </Switch>

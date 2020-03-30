@@ -21,9 +21,10 @@
 				"authConfig": {
 					"additionalAuthenticationProviders": [],
 					"defaultAuthentication": {
-						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-						"userPoolConfig": {
-							"userPoolId": "authagamplify0c96b27c"
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "createFile",
+							"apiKeyExpirationDays": "365"
 						}
 					}
 				}

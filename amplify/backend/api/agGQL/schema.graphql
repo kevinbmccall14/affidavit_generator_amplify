@@ -1,7 +1,14 @@
 type Case @model {
   id: ID!
   aaa: String
+  files: [File] @connection(name: "CaseFiles")
+}
+
+type File @model {
+  id: ID!
+  url: String
   pages: [Page]
+  case: Case @connection(name: "CaseFiles")
 }
 
 type Page {

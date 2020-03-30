@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import './CaseData.css';
-import CaseText from './CaseText';
+import './FileData.css';
+import FileText from './FileText';
 
-const getCase = `query GetCase($id: ID!) {
-  getCase(id: $id) {
+const getFile = `query GetFile($id: ID!) {
+  getFile(id: $id) {
     id
-    aaa
+    url
     pages {
       lines {
         text
@@ -16,24 +16,24 @@ const getCase = `query GetCase($id: ID!) {
   }
 }`;
 
-function CaseData() {
-  const [caseData, setCase] = useState({});
+function FileData() {
+  const [fileData, setFile] = useState({});
   const [view, setView] = useState('Text');
 
   useEffect(() => {
-    async function fetchCase() {
+    async function fetchFile() {
       const data = await API.graphql(
-        graphqlOperation(getCase, {
-          id: '5451cf4a-14ed-484c-bba5-1abbf2282f6f',
+        graphqlOperation(getFile, {
+          id: '3dc4009d-7e9d-4b7c-ac59-eecb5e6446fb',
         }),
       );
-      setCase(data.data.getCase);
+      setFile(data.data.getFile);
     }
-    fetchCase();
-  }, [caseData]);
+    fetchFile();
+  }, [fileData]);
 
   return (
-    <section className="CaseData-container">
+    <section className="FileData-container">
       <nav>
         <ul>
           <li>
@@ -44,10 +44,12 @@ function CaseData() {
         </ul>
       </nav>
       <section>
-        {caseData.id && <CaseText lines={caseData.pages[0].lines} />}
+        {fileData && fileData.id && (
+          <FileText lines={fileData.pages[0].lines} />
+        )}
       </section>
     </section>
   );
 }
 
-export default CaseData;
+export default FileData;
