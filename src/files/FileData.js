@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import './FileData.css';
 import FileText from './FileText';
+import FileFields from './FileFields';
+import FileTables from './FileTables';
 
 const getFile = `query getFile($id: ID!) {
   getFile(id: $id) {
@@ -11,13 +13,27 @@ const getFile = `query getFile($id: ID!) {
         text
         confidence
       }
+      fields {
+        key
+        value
+      }
     }
   }
 }`;
 
-const FileData = ({ url }) => {
-  const [fileData, setFile] = useState({});
+const FileData = ({ url, page }) => {
+  const [fileData, setFile] = useState({
+    pages: [
+      {
+        lines: [],
+        tables: [],
+        fields: [],
+      },
+    ],
+  });
   const [view, setView] = useState('Text');
+
+  console.log('Displaying file page', page - 1);
 
   useEffect(() => {
     async function fetchFile() {
@@ -36,15 +52,27 @@ const FileData = ({ url }) => {
       <nav>
         <ul>
           <li>
-            <a href="#Text">Text</a>
-            <a href="#Tables">Tables</a>
-            <a href="#Fields">Fields</a>
+            <a href="#Text" onClick={() => setView('Text')}>
+              Text
+            </a>
+            <a href="#Tables" onClick={() => setView('Tables')}>
+              Tables
+            </a>
+            <a href="#Fields" onClick={() => setView('Fields')}>
+              Fields
+            </a>
           </li>
         </ul>
       </nav>
       <section>
-        {fileData && fileData.id && fileData.pages && (
-          <FileText lines={fileData.pages[0].lines} />
+        {view === 'Text' && fileData.pages && (
+          <FileText lines={fileData.pages[page - 1].lines} />
+        )}
+        {view === 'Tables' && fileData.pages && (
+          <FileTables data={fileData.pages[page - 1].tables} />
+        )}
+        {view === 'Fields' && fileData.pages && (
+          <FileFields data={fileData.pages[page - 1].fields} />
         )}
       </section>
     </section>

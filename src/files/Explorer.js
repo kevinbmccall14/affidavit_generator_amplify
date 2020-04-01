@@ -10,10 +10,12 @@ import FileData from './FileData';
 const RECEIVE_FILES = 'RECEIVE_FILES';
 const RECEIVE_FILE = 'RECEIVE_FILE';
 const OPEN_FILE = 'OPEN_FILE';
+const CHANGE_PAGE = 'CHANGE_PAGE';
 
 const initialState = {
   files: [],
   openFile: '',
+  page: 1,
 };
 
 const reducer = (state, action) => {
@@ -24,6 +26,8 @@ const reducer = (state, action) => {
       return { ...state, files: [...state.files, action.file] };
     case OPEN_FILE:
       return { ...state, openFile: action.url };
+    case CHANGE_PAGE:
+      return { ...state, page: action.page };
     default:
       return state;
   }
@@ -65,19 +69,33 @@ const Explorer = () => {
               <Link to="/new">+ Files</Link>
             </button>
           </li>
-          <li
-            className="Explorer-control"
-            onClick={() => {
-              dispatch({ type: OPEN_FILE, url: '' });
-            }}
-          >
-            {state.openFile ? '←' : null}
+          <li>
+            <span
+              className="Explorer-control"
+              onClick={() => {
+                dispatch({ type: OPEN_FILE, url: '' });
+              }}
+            >
+              {state.openFile ? '←' : null}
+            </span>
           </li>
         </ul>
       </nav>
       <section className="Explorer-split-view">
-        {state.openFile && <PDFView url={state.openFile} />}
-        {state.openFile && <FileData url={state.openFile} />}
+        {state.openFile && (
+          <PDFView
+            url={state.openFile}
+            onChangePage={page =>
+              dispatch({
+                type: CHANGE_PAGE,
+                page,
+              })
+            }
+          />
+        )}
+        {state.openFile && (
+          <FileData url={state.openFile} page={state.page} />
+        )}
       </section>
       {!state.openFile && (
         <ul className="Explorer-items-container">

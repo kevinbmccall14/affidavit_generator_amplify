@@ -9,6 +9,7 @@ export const onCreateCase = /* GraphQL */ `
       files {
         items {
           id
+          analysis
         }
         nextToken
       }
@@ -23,6 +24,7 @@ export const onUpdateCase = /* GraphQL */ `
       files {
         items {
           id
+          analysis
         }
         nextToken
       }
@@ -37,6 +39,7 @@ export const onDeleteCase = /* GraphQL */ `
       files {
         items {
           id
+          analysis
         }
         nextToken
       }
@@ -57,6 +60,7 @@ export const onCreateFile = /* GraphQL */ `
           value
         }
       }
+      analysis
       case {
         id
         aaa
@@ -81,6 +85,7 @@ export const onUpdateFile = /* GraphQL */ `
           value
         }
       }
+      analysis
       case {
         id
         aaa
@@ -105,6 +110,7 @@ export const onDeleteFile = /* GraphQL */ `
           value
         }
       }
+      analysis
       case {
         id
         aaa

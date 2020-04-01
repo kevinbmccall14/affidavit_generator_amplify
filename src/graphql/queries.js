@@ -9,6 +9,7 @@ export const getCase = /* GraphQL */ `
       files {
         items {
           id
+          analysis
         }
         nextToken
       }
@@ -47,6 +48,7 @@ export const getFile = /* GraphQL */ `
           value
         }
       }
+      analysis
       case {
         id
         aaa
@@ -66,6 +68,7 @@ export const listFiles = /* GraphQL */ `
     listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        analysis
         case {
           id
           aaa
