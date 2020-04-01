@@ -3,10 +3,9 @@ type Case @model {
   aaa: String
   files: [File] @connection(name: "CaseFiles")
 }
-
+# id needs to be called id but file uses S3 url as id
 type File @model {
   id: ID!
-  url: String
   pages: [Page]
   case: Case @connection(name: "CaseFiles")
 }

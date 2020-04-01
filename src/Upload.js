@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import { withRouter } from 'react-router';
 
 const BUCKET_NAME = 'backend-dev-uploadbucket-1iz1d3q6w956z';
 
@@ -39,21 +40,23 @@ const putToSignedURL = file =>
     .catch(err => console.log(err));
 
 // File upload component powered by https://www.dropzonejs.com/
-const Upload = ({ onUpload }) => (
+const Upload = ({ onUpload, history }) => (
   <Dropzone
     onDrop={acceptedFiles =>
       Promise.all(
         acceptedFiles.map(file =>
-          putToSignedURL(file).then(() =>
-            onUpload(
-              `https://${BUCKET_NAME}.s3.amazonaws.com/${file.name}`,
-            ),
-          ),
+          putToSignedURL(file)
+            .then(() =>
+              onUpload(
+                `https://${BUCKET_NAME}.s3.amazonaws.com/${file.name}`,
+              ),
+            )
+            .then(history.push('/')),
         ),
       )
     }
   >
-    {({ getRootProps, getInputProps }) => (
+    {({ getRootProps, getInputProps, ...moreprops }) => (
       <section>
         <div {...getRootProps()}>
           <input {...getInputProps()} />
@@ -64,4 +67,4 @@ const Upload = ({ onUpload }) => (
   </Dropzone>
 );
 
-export default Upload;
+export default withRouter(Upload);

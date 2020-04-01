@@ -1,5 +1,5 @@
 {
-    "AppSyncApiName": "agGQL",
+    "AppSyncApiName": "agAPI",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": "false"
 }

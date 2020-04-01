@@ -3,10 +3,9 @@ import { API, graphqlOperation } from 'aws-amplify';
 import './FileData.css';
 import FileText from './FileText';
 
-const getFile = `query GetFile($id: ID!) {
+const getFile = `query getFile($id: ID!) {
   getFile(id: $id) {
     id
-    url
     pages {
       lines {
         text
@@ -16,7 +15,7 @@ const getFile = `query GetFile($id: ID!) {
   }
 }`;
 
-function FileData() {
+const FileData = ({ url }) => {
   const [fileData, setFile] = useState({});
   const [view, setView] = useState('Text');
 
@@ -24,13 +23,13 @@ function FileData() {
     async function fetchFile() {
       const data = await API.graphql(
         graphqlOperation(getFile, {
-          id: '3dc4009d-7e9d-4b7c-ac59-eecb5e6446fb',
+          id: url,
         }),
       );
       setFile(data.data.getFile);
     }
     fetchFile();
-  }, [fileData]);
+  }, []);
 
   return (
     <section className="FileData-container">
@@ -44,12 +43,12 @@ function FileData() {
         </ul>
       </nav>
       <section>
-        {fileData && fileData.id && (
+        {fileData && fileData.id && fileData.pages && (
           <FileText lines={fileData.pages[0].lines} />
         )}
       </section>
     </section>
   );
-}
+};
 
 export default FileData;

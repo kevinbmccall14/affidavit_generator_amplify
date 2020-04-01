@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -25,10 +24,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-.App-split-view {
-  display: flex;
 }
 
 @keyframes App-logo-spin {

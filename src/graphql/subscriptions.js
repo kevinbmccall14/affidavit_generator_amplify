@@ -9,11 +9,6 @@ export const onCreateCase = /* GraphQL */ `
       files {
         items {
           id
-          url
-          case {
-            id
-            aaa
-          }
         }
         nextToken
       }
@@ -28,11 +23,6 @@ export const onUpdateCase = /* GraphQL */ `
       files {
         items {
           id
-          url
-          case {
-            id
-            aaa
-          }
         }
         nextToken
       }
@@ -47,11 +37,6 @@ export const onDeleteCase = /* GraphQL */ `
       files {
         items {
           id
-          url
-          case {
-            id
-            aaa
-          }
         }
         nextToken
       }
@@ -62,23 +47,10 @@ export const onCreateFile = /* GraphQL */ `
   subscription OnCreateFile {
     onCreateFile {
       id
-      url
       pages {
         lines {
           text
           confidence
-          words {
-            text
-            confidence
-          }
-        }
-        tables {
-          cells {
-            row
-            column
-            text
-            confidence
-          }
         }
         fields {
           key
@@ -89,10 +61,6 @@ export const onCreateFile = /* GraphQL */ `
         id
         aaa
         files {
-          items {
-            id
-            url
-          }
           nextToken
         }
       }
@@ -103,23 +71,10 @@ export const onUpdateFile = /* GraphQL */ `
   subscription OnUpdateFile {
     onUpdateFile {
       id
-      url
       pages {
         lines {
           text
           confidence
-          words {
-            text
-            confidence
-          }
-        }
-        tables {
-          cells {
-            row
-            column
-            text
-            confidence
-          }
         }
         fields {
           key
@@ -130,10 +85,6 @@ export const onUpdateFile = /* GraphQL */ `
         id
         aaa
         files {
-          items {
-            id
-            url
-          }
           nextToken
         }
       }
@@ -144,23 +95,10 @@ export const onDeleteFile = /* GraphQL */ `
   subscription OnDeleteFile {
     onDeleteFile {
       id
-      url
       pages {
         lines {
           text
           confidence
-          words {
-            text
-            confidence
-          }
-        }
-        tables {
-          cells {
-            row
-            column
-            text
-            confidence
-          }
         }
         fields {
           key
@@ -171,10 +109,6 @@ export const onDeleteFile = /* GraphQL */ `
         id
         aaa
         files {
-          items {
-            id
-            url
-          }
           nextToken
         }
       }

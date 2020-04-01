@@ -12,11 +12,6 @@ export const createCase = /* GraphQL */ `
       files {
         items {
           id
-          url
-          case {
-            id
-            aaa
-          }
         }
         nextToken
       }
@@ -34,11 +29,6 @@ export const updateCase = /* GraphQL */ `
       files {
         items {
           id
-          url
-          case {
-            id
-            aaa
-          }
         }
         nextToken
       }
@@ -56,11 +46,6 @@ export const deleteCase = /* GraphQL */ `
       files {
         items {
           id
-          url
-          case {
-            id
-            aaa
-          }
         }
         nextToken
       }
@@ -74,23 +59,10 @@ export const createFile = /* GraphQL */ `
   ) {
     createFile(input: $input, condition: $condition) {
       id
-      url
       pages {
         lines {
           text
           confidence
-          words {
-            text
-            confidence
-          }
-        }
-        tables {
-          cells {
-            row
-            column
-            text
-            confidence
-          }
         }
         fields {
           key
@@ -101,10 +73,6 @@ export const createFile = /* GraphQL */ `
         id
         aaa
         files {
-          items {
-            id
-            url
-          }
           nextToken
         }
       }
@@ -118,23 +86,10 @@ export const updateFile = /* GraphQL */ `
   ) {
     updateFile(input: $input, condition: $condition) {
       id
-      url
       pages {
         lines {
           text
           confidence
-          words {
-            text
-            confidence
-          }
-        }
-        tables {
-          cells {
-            row
-            column
-            text
-            confidence
-          }
         }
         fields {
           key
@@ -145,10 +100,6 @@ export const updateFile = /* GraphQL */ `
         id
         aaa
         files {
-          items {
-            id
-            url
-          }
           nextToken
         }
       }
@@ -162,23 +113,10 @@ export const deleteFile = /* GraphQL */ `
   ) {
     deleteFile(input: $input, condition: $condition) {
       id
-      url
       pages {
         lines {
           text
           confidence
-          words {
-            text
-            confidence
-          }
-        }
-        tables {
-          cells {
-            row
-            column
-            text
-            confidence
-          }
         }
         fields {
           key
@@ -189,10 +127,6 @@ export const deleteFile = /* GraphQL */ `
         id
         aaa
         files {
-          items {
-            id
-            url
-          }
           nextToken
         }
       }

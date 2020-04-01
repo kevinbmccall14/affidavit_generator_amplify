@@ -9,11 +9,6 @@ export const getCase = /* GraphQL */ `
       files {
         items {
           id
-          url
-          case {
-            id
-            aaa
-          }
         }
         nextToken
       }
@@ -31,10 +26,6 @@ export const listCases = /* GraphQL */ `
         id
         aaa
         files {
-          items {
-            id
-            url
-          }
           nextToken
         }
       }
@@ -46,23 +37,10 @@ export const getFile = /* GraphQL */ `
   query GetFile($id: ID!) {
     getFile(id: $id) {
       id
-      url
       pages {
         lines {
           text
           confidence
-          words {
-            text
-            confidence
-          }
-        }
-        tables {
-          cells {
-            row
-            column
-            text
-            confidence
-          }
         }
         fields {
           key
@@ -73,10 +51,6 @@ export const getFile = /* GraphQL */ `
         id
         aaa
         files {
-          items {
-            id
-            url
-          }
           nextToken
         }
       }
@@ -92,23 +66,9 @@ export const listFiles = /* GraphQL */ `
     listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        url
-        pages {
-          lines {
-            text
-            confidence
-          }
-          fields {
-            key
-            value
-          }
-        }
         case {
           id
           aaa
-          files {
-            nextToken
-          }
         }
       }
       nextToken
