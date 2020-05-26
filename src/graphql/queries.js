@@ -9,7 +9,12 @@ export const getCase = /* GraphQL */ `
       files {
         items {
           id
+          key
+          bucket
+          size
           analysis
+          createdAt
+          updatedAt
         }
         nextToken
       }
@@ -38,6 +43,9 @@ export const getFile = /* GraphQL */ `
   query GetFile($id: ID!) {
     getFile(id: $id) {
       id
+      key
+      bucket
+      size
       pages {
         lines {
           text
@@ -56,6 +64,8 @@ export const getFile = /* GraphQL */ `
           nextToken
         }
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -68,11 +78,16 @@ export const listFiles = /* GraphQL */ `
     listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        key
+        bucket
+        size
         analysis
         case {
           id
           aaa
         }
+        createdAt
+        updatedAt
       }
       nextToken
     }

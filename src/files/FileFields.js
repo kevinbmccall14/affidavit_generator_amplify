@@ -1,5 +1,5 @@
 import React from 'react';
-import './FileFields.css';
+import './FileFields.scss';
 
 const FileFields = ({ data }) => (
   <section>

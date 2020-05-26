@@ -1,6 +1,6 @@
 import React from 'react';
 import PDFViewer from 'pdf-viewer-reactjs';
-import './PDFView.css';
+import './PDFView.scss';
 
 const PDFView = ({ url, onChangePage }) => {
   return (

@@ -12,7 +12,12 @@ export const createCase = /* GraphQL */ `
       files {
         items {
           id
+          key
+          bucket
+          size
           analysis
+          createdAt
+          updatedAt
         }
         nextToken
       }
@@ -30,7 +35,12 @@ export const updateCase = /* GraphQL */ `
       files {
         items {
           id
+          key
+          bucket
+          size
           analysis
+          createdAt
+          updatedAt
         }
         nextToken
       }
@@ -48,7 +58,12 @@ export const deleteCase = /* GraphQL */ `
       files {
         items {
           id
+          key
+          bucket
+          size
           analysis
+          createdAt
+          updatedAt
         }
         nextToken
       }
@@ -62,6 +77,9 @@ export const createFile = /* GraphQL */ `
   ) {
     createFile(input: $input, condition: $condition) {
       id
+      key
+      bucket
+      size
       pages {
         lines {
           text
@@ -80,6 +98,8 @@ export const createFile = /* GraphQL */ `
           nextToken
         }
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -90,6 +110,9 @@ export const updateFile = /* GraphQL */ `
   ) {
     updateFile(input: $input, condition: $condition) {
       id
+      key
+      bucket
+      size
       pages {
         lines {
           text
@@ -108,6 +131,8 @@ export const updateFile = /* GraphQL */ `
           nextToken
         }
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -118,6 +143,9 @@ export const deleteFile = /* GraphQL */ `
   ) {
     deleteFile(input: $input, condition: $condition) {
       id
+      key
+      bucket
+      size
       pages {
         lines {
           text
@@ -136,6 +164,8 @@ export const deleteFile = /* GraphQL */ `
           nextToken
         }
       }
+      createdAt
+      updatedAt
     }
   }
 `;

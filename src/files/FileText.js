@@ -1,9 +1,9 @@
 import React from 'react';
-import './FileText.css';
+import './FileText.scss';
 
 const FileText = ({ lines }) => (
   <section>
-    {lines.map(line => (
+    {lines.map((line) => (
       <span className="FileText-text">{line.text}</span>
     ))}
   </section>

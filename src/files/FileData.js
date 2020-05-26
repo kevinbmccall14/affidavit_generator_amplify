@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import './FileData.css';
+import './FileData.scss';
 import FileText from './FileText';
 import FileFields from './FileFields';
 import FileTables from './FileTables';

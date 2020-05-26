@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
-import './App.css';
+import './App.scss';
 import Upload from './Upload';
-import Explorer from './files/Explorer';
+import Files from './files/Files';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
@@ -9,6 +9,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
 
 Amplify.configure(awsconfig);
@@ -38,7 +39,7 @@ function App() {
         <Switch>
           <Route path="/new">
             <Upload
-              onUpload={url => {
+              onUpload={(url) => {
                 dispatch({
                   type: START_CASE,
                   case: {
@@ -48,9 +49,10 @@ function App() {
               }}
             />
           </Route>
-          <Route path="/">
-            <Explorer />
+          <Route path="/files">
+            <Files />
           </Route>
+          <Redirect from="/" to="files" />
         </Switch>
       </div>
     </Router>

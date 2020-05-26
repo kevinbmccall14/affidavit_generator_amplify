@@ -6,9 +6,14 @@ type Case @model {
 # id needs to be called id but file uses S3 url as id
 type File @model {
   id: ID!
+  key: String
+  bucket: String
+  size: String
   pages: [Page]
   analysis: String
   case: Case @connection(name: "CaseFiles")
+  createdAt: String
+  updatedAt: String
 }
 
 type Page {

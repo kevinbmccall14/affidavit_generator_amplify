@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Explorer from './Explorer';
+import Files from './Files';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-test('Renders Explorer in DOM', () => {
+test('Renders Files Explorer in DOM', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <Router>
-      <Explorer />
+      <Files />
     </Router>,
     div,
   );

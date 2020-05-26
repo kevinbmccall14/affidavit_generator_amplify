@@ -1,5 +1,5 @@
 import React from 'react';
-import './FileTables.css';
+import './FileTables.scss';
 
 const FileTables = ({ data }) => (
   <section>
